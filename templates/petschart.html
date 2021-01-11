@@ -1,0 +1,57 @@
+
+{% extends 'base.html' %}
+{% block title %}
+家犬貓資料統計
+{% endblock %}
+{% block titlemessage %}
+    <h1>家犬貓資料統計</h1>
+{% endblock %}
+{% block content %}
+
+{% for branch in branches %}
+    
+{% endfor %}
+
+<center>
+    <table width=800>
+      <tr><td>
+    <canvas id="myChart" width="800" height="400"></canvas>
+    
+    </td></tr>
+    </table>
+    </center>
+
+    <script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ["94年", "96年", "98年","100年", "102年", "104年"],
+        datasets: [{
+            label: '家犬資料統計',
+            data: [1146691, 1321438, 1271920, 1241910, 1741602,1733660],
+            fill: false,
+            backgroundColor: 'rgba(54, 162, 235, 1)',
+            borderColor: 'rgba(54, 162, 235, 1)'
+        }, 
+        {
+            label: '家貓資料統計',
+            data: [221254, 280638, 281600, 302846, 575993,569834],
+            fill: false,
+            backgroundColor: 'rgba(0, 255, 127, 1)',			
+            borderColor: 'rgba(0, 255, 127, 1)'
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+    </script>
+
+{% endblock %}

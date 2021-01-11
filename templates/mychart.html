@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% block title %}
+我的統計圖表
+{% endblock %}
+{% block titlemessage %}
+    <h1>我的統計圖表</h1>
+{% endblock %}
+{% block content %}
+<p></p>
+<p></p>
+<center>
+<button type="button" class="btn btn-dark"><a href="/mychart/">全部顯示</a></button>&nbsp;
+{% for branch in branches %}
+    <button type="button" class="btn btn-light">
+        <a href="/mychart/{{branch.id}}/">{{branch.title}}</a>
+         
+        </button>&nbsp;
+{% endfor %}
+</center>
+<p></p>
+<p></p>
+<center>
+<table width=800>
+  <tr><td>
+<canvas id="myChart" width="800" height="400"></canvas>
+
+</td></tr>
+</table>
+</center>
+<script>
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [
+            {% for item in data %}
+                '{{ item.branch }}-{{ item.income_month}}',
+            {% endfor %}            
+        ],
+        datasets: [{
+            label: '各分店營收情況',
+            data:[
+                {% for item in data %}
+                    '{{ item.income }}',
+                {% endfor %} 
+            ],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+<center>
+<table width=800>
+    <tr><td>
+  </td></tr>
+  </table>
+  </center>
+  <script>
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var myChart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+          labels: [
+              {% for item in data %}
+                  '{{ item.branch }}-{{ item.income_month}}',
+              {% endfor %}            
+          ],
+          datasets: [{
+              label: '各分店營收情況',
+              data:[
+                  {% for item in data %}
+                      '{{ item.income }}',
+                  {% endfor %} 
+              ],
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)'
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero: true
+                  }
+              }]
+          }
+      }
+  });
+  </script>
+  <p></p>
+  <p></p>
+  <center>
+<a href="https://www.google.com/maps/place/%E9%BA%BB%E5%8F%A4%E8%8C%B6%E5%9D%8A%EF%BC%88%E6%A5%A0%E6%A2%93%E5%89%B5%E6%96%B0%E5%BA%97%EF%BC%89/@22.7382309,120.3223475,16z/data=!4m8!1m2!2m1!1zTUFDVealoOaik-WJteaWsA!3m4!1s0x346e0f7317a278bd:0x81b7444e43910ce8!8m2!3d22.7399636!4d120.323621"><img src="/static/111.jpg"  width="240" height="180"></a>
+<a href="https://www.facebook.com/Macu3188"><img src="/static/222.jpg"  width="240" height="180"></a>
+</center>
+{% endblock %}SS
